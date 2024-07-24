@@ -17,6 +17,7 @@ import pyfiglet
 """  
 add a watermark here. could be a .svg 
 might also be good to have some stats about the project, date, time, client, etc.
+bottom right?
 """
 
 # Set CONSTANT vars
