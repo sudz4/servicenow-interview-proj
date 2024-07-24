@@ -22,7 +22,7 @@ bottom right?
 
 # Set CONSTANT vars
 CLIENT_NAME = 'ServiceNow'  # input the clients name or topic, i.e, ACME Solutions
-meeting_type = 'Multi-SSO'  # input the meeting type, i.e., CAB (Change Advisory Board)
+meeting_type = 'Training'  # input the meeting type, i.e., CAB (Change Advisory Board)
 CLIENT_NAME = CLIENT_NAME.upper()
 
 # Set screenshot (screen capture) interval here - IMPORTANT! -
