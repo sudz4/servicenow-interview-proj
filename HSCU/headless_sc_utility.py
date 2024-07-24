@@ -14,6 +14,11 @@ import subprocess
 from datetime import datetime
 import pyfiglet
 
+"""  
+add a watermark here. could be a .svg 
+might also be good to have some stats about the project, date, time, client, etc.
+"""
+
 # Set CONSTANT vars
 CLIENT_NAME = 'ServiceNow'  # input the clients name or topic, i.e, ACME Solutions
 meeting_type = 'Multi-SSO'  # input the meeting type, i.e., CAB (Change Advisory Board)
@@ -76,3 +81,4 @@ if __name__ == "__main__":
         print("Thanks for using sCrEeN cApTuRe!")
         ascii_art_signature()
         print()
+
