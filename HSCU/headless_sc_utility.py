@@ -1,13 +1,3 @@
-def ascii_art_signature():
-    ascii_art_sudz4 = r""" # a program by,
-███████ ██    ██ ██████  ███████ ██   ██ 
-██      ██    ██ ██   ██    ███  ██   ██ 
-███████ ██    ██ ██   ██   ███   ███████ 
-     ██ ██    ██ ██   ██  ███         ██ 
-███████  ██████  ██████  ███████      ██                               
-    """
-    print(ascii_art_sudz4)
-
 import os
 import time
 import subprocess
@@ -72,6 +62,17 @@ def main():
         remaining_time = interval_countdown(INTERVAL)
         take_screenshot(folder_path, CLIENT_NAME)
         time.sleep(remaining_time)
+
+def ascii_art_signature():
+    ascii_art_sudz4 = r""" # a program by,
+███████ ██    ██ ██████  ███████ ██   ██ 
+██      ██    ██ ██   ██    ███  ██   ██ 
+███████ ██    ██ ██   ██   ███   ███████ 
+     ██ ██    ██ ██   ██  ███         ██ 
+███████  ██████  ██████  ███████      ██                               
+    """
+    print(ascii_art_sudz4)
+
 
 if __name__ == "__main__":
     try:
