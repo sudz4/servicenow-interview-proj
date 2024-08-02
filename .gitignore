@@ -10,10 +10,18 @@
 /CUSTOMERS
 /SEC/files
 
-/PAST_WORK
-
 /recon
-/gen_ai_data
+/GENAI_Collateral
 /PLTR
 
 /images/LOGOS_output
+
+/CIS
+
+/app_HeadlessScreenCaptureUtility
+/app_ServiceNowUI16LogoGenerator
+/learn_ServiceNowCIS
+/data_GenAI
+/data_Recon
+/app_Stats
+/past_work
