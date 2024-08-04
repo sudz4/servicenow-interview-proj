@@ -21,7 +21,8 @@ COUNTDOWN_SECONDS = INTERVAL
 RUNTIME_IN_MINUTES = 90  # in minutes
 
 def create_screenshots_folder(client_name):
-    top_folder_path = '/Users/sudz4/Desktop/SERVICENOW-INTERVIEW/servicenow-interview-proj/HSCU/hscu_output'
+    # top_folder_path = '/Users/sudz4/Desktop/SERVICENOW-INTERVIEW/servicenow-interview-proj/app_HeadlessScreenCaptureUtility/output_temp_main'
+    top_folder_path = ''
     if not os.path.exists(top_folder_path):
         os.makedirs(top_folder_path)
 
