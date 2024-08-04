@@ -15,29 +15,45 @@ bottom right?
 # meeting_type = 'Training'  # input the meeting type, i.e., CAB (Change Advisory Board)
 # CLIENT_NAME = CLIENT_NAME.upper()
 
-# Set CONSTANT vars
-WORKFLOW = 'IT'  # input the clients name or topic, i.e, ACME Solutions
-CAPABILITY = 'GenAI'  # input the meeting type, i.e., CAB (Change Advisory Board)
+"""
+SET CONSTANTS
+"""
+# list of SC responsibilities / use cases for headless screen capture utility program
+sc_job_list = ['DEMO', # 0
+               'ROM',
+               'BE',
+               'SOW',
+               'RFP',
+               'POC',
+               'Documentation',
+               'Deliverable',
+               'NA']
+           
+# constant set (1)
+## select the first item in the SC job list
+PURPOSE = sc_job_list[0]  # 'DEMO'
+COMPANY = 'ServiceNow'  
+WORKFLOW = 'IT' 
+CAPABILITY = 'GenAI' 
 
-# Set screenshot (screen capture) interval here - IMPORTANT! -
+# constant set (2)
 INTERVAL = 5  # in seconds
 COUNTDOWN_SECONDS = INTERVAL
 RUNTIME_IN_MINUTES = 90  # in minutes
 
-def create_screenshots_folder(SUBJECT):
-
-    """send to temporart output folder"""
-    # top_folder_path = '/Users/sudz4/Desktop/SERVICENOW-INTERVIEW/servicenow-interview-proj/app_HeadlessScreenCaptureUtility/output_temp_main'
-    
-    """send to functional technical specs master (all) folder"""
+def create_screenshots_folder(company):
+    """Send to functional technical specs master (all) folder"""
     top_folder_path = '/Users/sudz4/Desktop/SERVICENOW-INTERVIEW/servicenow-interview-proj/app_HeadlessScreenCaptureUtility/output_technical_functional_specs'
     
     if not os.path.exists(top_folder_path):
         os.makedirs(top_folder_path)
 
-    client_folder_path = os.path.join(top_folder_path, SUBJECT)
+    client_folder_path = os.path.join(top_folder_path, company)
     if not os.path.exists(client_folder_path):
         os.makedirs(client_folder_path)
+    
+    # Debugging line to ensure the client_folder_path is correct
+    print(f"Client folder path: {client_folder_path}")
 
     return client_folder_path
 
@@ -53,17 +69,24 @@ def interval_countdown(interval):
         time.sleep(1)
     return interval
 
-def take_screenshot(folder_path, WORKFLOW):
+def take_screenshot(folder_path, workflow):
+    # Debugging line to ensure folder_path is correct
+    print(f"Saving screenshot to folder: {folder_path}")
+
     timestamp = time.strftime("%Y%m%d-%H%M%S")
-    screenshot_file = os.path.join(folder_path, f"{timestamp}_{WORKFLOW}_{CAPABILITY}.png")
+    screenshot_file = os.path.join(folder_path, f"{PURPOSE}_{COMPANY}_{workflow}_{CAPABILITY}_{timestamp}.png")
+    
+    # Debugging line to ensure the screenshot_file path is correct
+    print(f"Screenshot will be saved as: {screenshot_file}")
+    
     subprocess.run(["screencapture", "-x", screenshot_file])
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print(f"{WORKFLOW} screen capture SAVED AS {screenshot_file} @ {current_time}")
+    print(f"{workflow} screen capture SAVED AS {screenshot_file} @ {current_time}")
     return True
 
 def main():
     end_time = time.time() + RUNTIME_IN_MINUTES * 60
-    folder_path = create_screenshots_folder(WORKFLOW)
+    folder_path = create_screenshots_folder(COMPANY)
 
     print(f"Machine screen capture in progress ({INTERVAL} second intervals) for {RUNTIME_IN_MINUTES} minutes...")
     print("Press control+c to quit or stop running program")
@@ -83,7 +106,6 @@ def ascii_art_signature():
     """
     print(ascii_art_sudz4)
 
-
 if __name__ == "__main__":
     try:
         main()
@@ -93,4 +115,3 @@ if __name__ == "__main__":
         print("Thanks for using sCrEeN cApTuRe!")
         ascii_art_signature()
         print()
-
