@@ -10,23 +10,32 @@ might also be good to have some stats about the project, date, time, client, etc
 bottom right?
 """
 
+# # Set CONSTANT vars
+# CLIENT_NAME = 'ServiceNow'  # input the clients name or topic, i.e, ACME Solutions
+# meeting_type = 'Training'  # input the meeting type, i.e., CAB (Change Advisory Board)
+# CLIENT_NAME = CLIENT_NAME.upper()
+
 # Set CONSTANT vars
-CLIENT_NAME = 'ServiceNow'  # input the clients name or topic, i.e, ACME Solutions
-meeting_type = 'Training'  # input the meeting type, i.e., CAB (Change Advisory Board)
-CLIENT_NAME = CLIENT_NAME.upper()
+WORKFLOW = 'IT'  # input the clients name or topic, i.e, ACME Solutions
+CAPABILITY = 'GenAI'  # input the meeting type, i.e., CAB (Change Advisory Board)
 
 # Set screenshot (screen capture) interval here - IMPORTANT! -
 INTERVAL = 5  # in seconds
 COUNTDOWN_SECONDS = INTERVAL
 RUNTIME_IN_MINUTES = 90  # in minutes
 
-def create_screenshots_folder(client_name):
+def create_screenshots_folder(SUBJECT):
+
+    """send to temporart output folder"""
     # top_folder_path = '/Users/sudz4/Desktop/SERVICENOW-INTERVIEW/servicenow-interview-proj/app_HeadlessScreenCaptureUtility/output_temp_main'
-    top_folder_path = ''
+    
+    """send to functional technical specs master (all) folder"""
+    top_folder_path = '/Users/sudz4/Desktop/SERVICENOW-INTERVIEW/servicenow-interview-proj/app_HeadlessScreenCaptureUtility/output_technical_functional_specs'
+    
     if not os.path.exists(top_folder_path):
         os.makedirs(top_folder_path)
 
-    client_folder_path = os.path.join(top_folder_path, client_name)
+    client_folder_path = os.path.join(top_folder_path, SUBJECT)
     if not os.path.exists(client_folder_path):
         os.makedirs(client_folder_path)
 
@@ -44,24 +53,24 @@ def interval_countdown(interval):
         time.sleep(1)
     return interval
 
-def take_screenshot(folder_path, client_name):
+def take_screenshot(folder_path, WORKFLOW):
     timestamp = time.strftime("%Y%m%d-%H%M%S")
-    screenshot_file = os.path.join(folder_path, f"{timestamp}_{client_name}_{meeting_type}.png")
+    screenshot_file = os.path.join(folder_path, f"{timestamp}_{WORKFLOW}_{CAPABILITY}.png")
     subprocess.run(["screencapture", "-x", screenshot_file])
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print(f"{client_name} screen capture SAVED AS {screenshot_file} @ {current_time}")
+    print(f"{WORKFLOW} screen capture SAVED AS {screenshot_file} @ {current_time}")
     return True
 
 def main():
     end_time = time.time() + RUNTIME_IN_MINUTES * 60
-    folder_path = create_screenshots_folder(CLIENT_NAME)
+    folder_path = create_screenshots_folder(WORKFLOW)
 
     print(f"Machine screen capture in progress ({INTERVAL} second intervals) for {RUNTIME_IN_MINUTES} minutes...")
     print("Press control+c to quit or stop running program")
 
     while time.time() < end_time:
         remaining_time = interval_countdown(INTERVAL)
-        take_screenshot(folder_path, CLIENT_NAME)
+        take_screenshot(folder_path, WORKFLOW)
         time.sleep(remaining_time)
 
 def ascii_art_signature():
