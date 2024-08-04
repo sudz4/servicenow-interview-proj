@@ -24,3 +24,9 @@
 /past_work
 /alskarmebok
 /interview_prod
+
+!/app_edgar_sec/AECOM/
+!/app_edgar_sec/Experian/
+!/app_edgar_sec/Jacobs Solutions/
+!/app_edgar_sec/NOW/
+!/app_edgar_sec/PLTR/
