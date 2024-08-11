@@ -7,11 +7,11 @@ import time
 # List of your notebook files
 notebooks = [
     "1_main.ipynb",
-    "notebook2.ipynb",
-    "notebook3.ipynb",
-    "notebook4.ipynb",
-    "notebook5.ipynb",
-    "notebook6.ipynb"
+    "2_overlays.ipynb",
+    "3_baseline_tasks.ipynb",
+    "4_psds.ipynb",
+    "5_clean_up.ipynb",
+    "6_charts.ipynb"
 ]
 
 # Delay times in seconds
@@ -24,7 +24,14 @@ for i, notebook in enumerate(notebooks):
     # Load the notebook
     with open(notebook) as f:
         nb = nbformat.read(f, as_version=4)
+    """ 
+    WTF is going on here tho?
+    might be to fancy bull shit.
+    just run the files. 
+    be done.
+    fast as excel can go.
     
+    """
     # Execute the notebook
     ep = ExecutePreprocessor(timeout=600, kernel_name='python3')
     ep.preprocess(nb, {'metadata': {'path': '.'}})
