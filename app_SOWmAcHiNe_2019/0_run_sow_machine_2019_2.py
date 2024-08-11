@@ -43,6 +43,7 @@ if __name__ == "__main__":
     # SORT (1-6)
     notebooks.sort()
 
+    # PRINT list of (ordered) notebooks
     print(notebooks)
 
     # DELAY (between 1st and 2nd notebook)
