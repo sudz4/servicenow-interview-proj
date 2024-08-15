@@ -1,34 +1,41 @@
+ 
+ // action_name: Return Response
+// onclick: runClientCode(); 
 
-    
 function runClientCode(){
 
-    gsftSubmit(null, g_form.getFormElement(), 'return_response');
+    gsftSubmit(null, g_form.getFormElement(), 'ReturnResponse');
  }
-    
-    // Initialize the RESTMessageV2 object with the REST Message and method name
-    var r = new sn_ws.RESTMessageV2('x_443728_matt_s_ge.Matt\'s GenAI OpenAI REST Message', 'ChatGPT-POST-L2');
 
-    // Set the parameters for the API call
-    r.setStringParameterNoEscape('matts_genai_KEY_0', gs.getProperty('x_443728_matt_s_ge.openai.api.key')); // Use system property for the API key
-    r.setStringParameterNoEscape('system_prompt', 'Act as a ServiceNow Certified Master Architect (CMA).');
-    r.setStringParameterNoEscape('model', 'gpt-4o-mini');
-    r.setStringParameterNoEscape('prompt', 'Who is the CEO of ServiceNow?');
+ (function executeAction(current, previous /*null when async*/) {
 
-    // Execute the REST message
-    var response = r.execute();
-    var responseBody = response.getBody();
-    var httpStatus = response.getStatusCode();
+   // Create the REST message
+   var r = new sn_ws.RESTMessageV2('x_443728_matt_s_ge.openai2', 'GetResponse');
+   r.setStringParameterNoEscape('system_prompt', 'Act as a ServiceNow Certified Master Architect (CMA).');
+   r.setStringParameterNoEscape('model', 'gpt-4o-mini');
+   r.setStringParameterNoEscape('prompt', current.ask_here); // Assuming 'ask_question' is a field on the current record
 
-    // Log the response for debugging purposes
-    gs.log('GPT2TESTING     ' + httpStatus);
-    gs.log('GPT2TESTING resonse body    ' + responseBody);
+   // Execute the REST call
+   var response = r.execute();
+   var responseBody = response.getBody();
+   var httpStatus = response.getStatusCode();
 
-    // Check if the response was successful
-    if (httpStatus == 200) {
-        var parsedResponse = JSON.parse(responseBody);
-        gs.log('GPT2TESTING ChatGPT Response =   ' + parsedResponse.choices[0].message.content);
-    } else {
-        gs.error('GPT2TESTING -> OpenAI API error: ' + httpStatus + ' - ' + responseBody);
-    }
-    // Log any exceptions that occur during the process
-    gs.error('SUDZ #4 -> Exception during API call: ' + ex.message);
+   // Log the response for debugging
+   gs.log("THE RESPONSE BODY IS: " + responseBody);
+
+   // Parse the response
+   var responseBodyObj = JSON.parse(responseBody);
+   var answer = responseBodyObj.messages.find(msg => msg.role === "assistant").content;
+
+   // Update the form field with the response (assuming you have an 'answer' field on the form)
+   current.ask_here = answer; // Replace 'u_answer' with your actual field name for storing the response
+   current.update();
+
+   // Insert the data into your custom table
+   var openaiGR = new GlideRecord('x_443728_matt_s_ge.openai2'); // Replace with your actual custom table name
+   openaiGR.initialize();
+   openaiGR.ask_here = current.ask_question;
+   openaiGR.answer_here = answer;
+   openaiGR.insert();
+
+})(current, previous);
