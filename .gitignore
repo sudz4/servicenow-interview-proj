@@ -39,6 +39,13 @@
 /Users/sudz4/Desktop/SERVICENOW-INTERVIEW/servicenow-interview-proj/app_FilesRenameAndStructure/iixs_and_svgs
 
 # servicenow sn_utitls scriptsync files
-/dev183520
+
 /autocomplete
 jsconfig.json
+/dev183520/scopes.json
+dev183520/settings.json
+dev183520/x_443728_matt_s_ge/sys_rest_message_fn
+dev183520/x_443728_matt_s_ge/sp_widget
+dev183520/x_443728_matt_s_ge/sp_page
+
+_map.json
