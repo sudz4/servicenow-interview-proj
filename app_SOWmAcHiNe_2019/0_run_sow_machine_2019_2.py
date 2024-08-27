@@ -47,7 +47,7 @@ if __name__ == "__main__":
     print(notebooks)
 
     # DELAY (between 1st and 2nd notebook)
-    # delay_first_second = 10
+    delay_first_second = 10
 
-    # """RUN/EXECUTE"""
-    # run_notebooks(notebooks, delay_first_second)
+    """RUN/EXECUTE"""
+    run_notebooks(notebooks, delay_first_second)
