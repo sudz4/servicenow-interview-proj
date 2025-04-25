@@ -4,7 +4,7 @@ import papermill as pm
 import re
 
 # jupyter notebook directory
-notebooks_dir = '/Users/sudz4/Desktop/BOOK-II/servicenow-interview-proj/app_SOWmAcHiNe_2019'  # Replace with your directory path
+notebooks_dir = '/Users/sudz4/Desktop/TOOLS/servicenow-interview-proj/app_SOWmAcHiNe_2019'  # Replace with your directory path
 
 # change pwd to the notebooks directory
 os.chdir(notebooks_dir)
